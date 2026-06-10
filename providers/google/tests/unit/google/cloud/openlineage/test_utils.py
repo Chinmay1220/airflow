@@ -505,6 +505,8 @@ def test_get_identity_column_lineage_facet_no_input_datasets():
         ("/path/to/dir/*", "path/to/dir"),  # Path with wildcard at the end
         ("/path/to/dir/*.csv", "path/to/dir"),  # Path with wildcard in file name
         ("/path/to/dir/file.*", "path/to/dir"),  # Path with wildcard in file extension
+        ("/path/to/dir/archive.tar.*", "path/to/dir"),  # Wildcard extension with dotted file name
+        ("/path/to/dir/archive.tar.", "path/to/dir"),  # Trailing dot marks wildcard-derived prefix
         ("/path/to/*/dir/file.csv", "path/to"),  # Path with wildcard in the middle
         ("/path/to/dir/pre_", "path/to/dir"),  # Path with prefix
         ("/pre", "/"),  # Prefix only

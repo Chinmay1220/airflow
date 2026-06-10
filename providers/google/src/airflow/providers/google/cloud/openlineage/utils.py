@@ -196,8 +196,8 @@ def extract_ds_name_from_gcs_path(path: str) -> str:
     #     Example: "/dir/pre_" -> "/dir/"
     # - contains a dot at the end, then it is treated as a prefix (created after removing the wildcard).
     #     Example: "/dir/file." (was "/dir/file.*" with wildcard) -> "/dir/"
-    last_path_segment = os.path.basename(path).rstrip(".")
-    if "." not in last_path_segment and not path.endswith("/"):
+    last_path_segment = os.path.basename(path)
+    if (path.endswith(".") or "." not in last_path_segment) and not path.endswith("/"):
         path = pathlib.Path(path).parent.as_posix()
 
     # Normalize the path:
